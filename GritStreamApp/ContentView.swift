@@ -6,16 +6,28 @@
 //
 
 import SwiftUI
+import ARKit
+import Combine
 
 struct ContentView: View {
+     
+    @ObservedObject var counter: Counter
+    
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        if !ARWorldTrackingConfiguration.supportsFrameSemantics([.sceneDepth, .smoothedSceneDepth]) {
+            Text("Unsupported Device: This app requires the LiDAR Scanner to access the scene's depth.")
+        } else {
+            if counter.cgImage != nil {
+                Image(decorative: counter.depthImage!, scale: 1.0, orientation: .right)
+            }
+            Text("Hello, world! Count: " + String(counter.count)).padding()
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+       Text("PREVIEW MISSING!")
     }
 }

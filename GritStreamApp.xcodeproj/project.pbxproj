@@ -13,6 +13,7 @@
 		8924CB1F268372D900FD652A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8924CB1E268372D900FD652A /* Preview Assets.xcassets */; };
 		8924CB29268372DA00FD652A /* GritStreamAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8924CB28268372DA00FD652A /* GritStreamAppTests.swift */; };
 		8924CB33268372DA00FD652A /* GritStreamAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8924CB32268372DA00FD652A /* GritStreamAppUITests.swift */; };
+		8924CB402684891E00FD652A /* ArReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8924CB3F2684891E00FD652A /* ArReceiver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8909FAD42684A76700600811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8924CB14268372D900FD652A /* GritStreamApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GritStreamApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8924CB17268372D900FD652A /* GritStreamAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritStreamAppApp.swift; sourceTree = "<group>"; };
 		8924CB19268372D900FD652A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +44,7 @@
 		8924CB28268372DA00FD652A /* GritStreamAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritStreamAppTests.swift; sourceTree = "<group>"; };
 		8924CB2E268372DA00FD652A /* GritStreamAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GritStreamAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8924CB32268372DA00FD652A /* GritStreamAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GritStreamAppUITests.swift; sourceTree = "<group>"; };
+		8924CB3F2684891E00FD652A /* ArReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArReceiver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +95,8 @@
 		8924CB16268372D900FD652A /* GritStreamApp */ = {
 			isa = PBXGroup;
 			children = (
+				8909FAD42684A76700600811 /* Info.plist */,
+				8924CB3F2684891E00FD652A /* ArReceiver.swift */,
 				8924CB17268372D900FD652A /* GritStreamAppApp.swift */,
 				8924CB19268372D900FD652A /* ContentView.swift */,
 				8924CB1B268372D900FD652A /* Assets.xcassets */,
@@ -255,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8924CB1A268372D900FD652A /* ContentView.swift in Sources */,
+				8924CB402684891E00FD652A /* ArReceiver.swift in Sources */,
 				8924CB18268372D900FD652A /* GritStreamAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +424,11 @@
 				DEVELOPMENT_TEAM = 5C99X64T83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GritStreamApp/Info.plist;
+				INFOPLIST_KEY_CFBundleExecutable = GritStreamApp;
+				INFOPLIST_KEY_CFBundleName = GritStreamApp;
+				INFOPLIST_KEY_CFBundleVersion = 1;
+				INFOPLIST_KEY_NSCameraUsageDescription = "dsfdfosd sd g";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -448,6 +459,11 @@
 				DEVELOPMENT_TEAM = 5C99X64T83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GritStreamApp/Info.plist;
+				INFOPLIST_KEY_CFBundleExecutable = GritStreamApp;
+				INFOPLIST_KEY_CFBundleName = GritStreamApp;
+				INFOPLIST_KEY_CFBundleVersion = 1;
+				INFOPLIST_KEY_NSCameraUsageDescription = "dsfdfosd sd g";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
