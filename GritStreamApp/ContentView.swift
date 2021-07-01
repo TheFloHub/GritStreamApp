@@ -11,17 +11,19 @@ import Combine
 
 struct ContentView: View {
      
-    @ObservedObject var counter: Counter
+    @ObservedObject var guiData: GuiData
     
     
     var body: some View {
         if !ARWorldTrackingConfiguration.supportsFrameSemantics([.sceneDepth, .smoothedSceneDepth]) {
             Text("Unsupported Device: This app requires the LiDAR Scanner to access the scene's depth.")
         } else {
-            if counter.cgImage != nil {
-                Image(decorative: counter.depthImage!, scale: 1.0, orientation: .right)
+            
+            if guiData.depthImage != nil && guiData.colorImage != nil {
+                Image(decorative: guiData.colorImage!, scale: 1.0, orientation: .right).resizable().scaledToFit()
+                Image(decorative: guiData.depthImage!, scale: 1.0, orientation: .right).resizable().scaledToFit()
             }
-            Text("Hello, world! Count: " + String(counter.count)).padding()
+            Text("Hello, world! Count: " + String(guiData.count)).padding()
         }
     }
 }
