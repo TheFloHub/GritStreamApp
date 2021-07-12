@@ -42,6 +42,8 @@ final class ARReceiver: NSObject, ARSessionDelegate {
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         if(frame.sceneDepth != nil) && (frame.smoothedSceneDepth != nil) {
             //print(frame.camera)
+            //print(frame.timestamp)
+            //print(Date(timeIntervalSinceNow: frame.capturedDepthDataTimestamp))
             arData.depthImage = frame.sceneDepth?.depthMap
             arData.depthSmoothImage = frame.smoothedSceneDepth?.depthMap
             arData.confidenceImage = frame.sceneDepth?.confidenceMap
