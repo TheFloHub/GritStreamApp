@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 import ARKit
+import Network
 
 
 protocol ARDataReceiver: AnyObject {
@@ -15,6 +16,36 @@ final class ARData {
     var confidenceSmoothImage: CVPixelBuffer?
     var cameraIntrinsics = simd_float3x3()
     var cameraResolution = CGSize()
+    
+    func sendDepthMap(_ connection: NWConnection){
+        if depthImage == nil{
+            return
+        }
+        let dm = depthImage!
+        CVPixelBufferLockBaseAddress(dm, .readOnly)
+        let width = CVPixelBufferGetWidth(dm)
+        let height = CVPixelBufferGetHeight(dm)
+        let bpr = CVPixelBufferGetBytesPerRow(dm)
+        let pft: OSType = CVPixelBufferGetPixelFormatType(dm)
+        
+        let optPointer: UnsafeMutableRawPointer? = CVPixelBufferGetBaseAddress(dm)
+        if pft == kCVPixelFormatType_DepthFloat32 && width * 4 == bpr && width == 256 && height == 192 {
+            if optPointer != nil {
+                
+                let myData = Data(bytesNoCopy: optPointer!, count: 4 * width * height, deallocator: .none)
+                connection.send(content: myData,
+                                     completion: NWConnection.SendCompletion.contentProcessed { error in
+                    if let error = error {
+                        print("did send, error: %@", "\(error)")
+                        connection.cancel()
+                    } else {
+                        //print("did send, data:", data)
+                    }
+                })
+            }
+        }
+        CVPixelBufferUnlockBaseAddress(dm, .readOnly)
+    }
 }
 
 final class ARReceiver: NSObject, ARSessionDelegate {

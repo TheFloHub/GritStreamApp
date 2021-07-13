@@ -17,10 +17,7 @@ class GuiData: ObservableObject {
 }
 
 func test(buffer: CVPixelBuffer){
-    //print(buffer)
-    //print(CVPixelBufferGetPlaneCount(buffer))
-    //print(CVPixelBufferIsPlanar(buffer))
-    let ret1: CVReturn = CVPixelBufferLockBaseAddress(buffer, .readOnly)
+    CVPixelBufferLockBaseAddress(buffer, .readOnly)
     let width = CVPixelBufferGetWidth(buffer)
     let height = CVPixelBufferGetHeight(buffer)
     let bpr = CVPixelBufferGetBytesPerRow(buffer)
@@ -37,11 +34,7 @@ func test(buffer: CVPixelBuffer){
             }
         }
     }
-    
-
-
-    let ret2 = CVPixelBufferUnlockBaseAddress(buffer, .readOnly)
-    // print(ret1, ret2)
+    CVPixelBufferUnlockBaseAddress(buffer, .readOnly)
 }
 
 @main
@@ -49,6 +42,7 @@ final class GritStreamAppApp: App, ARDataReceiver {
     var guiData: GuiData = GuiData()
     var arReceiver: ARReceiver = ARReceiver()
     var ciContext: CIContext = CIContext()
+    var dataStream: DataStream = DataStream()
     
     init(){
         arReceiver.delegate = self
@@ -63,6 +57,7 @@ final class GritStreamAppApp: App, ARDataReceiver {
         let colorCiImage: CIImage = CIImage(cvPixelBuffer: arData.colorImage!)
         let colorCgImage: CGImage? = ciContext.createCGImage(colorCiImage, from: colorCiImage.extent)
         
+        //test(buffer: arData.depthImage!)
         let depthCiImage: CIImage = CIImage(cvPixelBuffer: arData.depthImage!)
         let depthCgImage: CGImage? = ciContext.createCGImage(depthCiImage, from: depthCiImage.extent)
         
@@ -70,6 +65,9 @@ final class GritStreamAppApp: App, ARDataReceiver {
         guiData.depthImage = depthCgImage
         guiData.count += 1
         
-        //test(buffer: arData.depthImage!)
+        if dataStream.connected == true {
+            dataStream.stream(arData, guiData.count)
+        }
+        
     }
 }
